@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
 import header from '@/components/header/header.vue'
 import goods from '@/components/goods/goods.vue'
 import sell from '@/components/sell/sell.vue'
