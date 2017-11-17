@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import header from './components/header/header.vue'
+  import header from './components/header/header.vue';
 
   const RESULT_OK = 0;
   export default {
