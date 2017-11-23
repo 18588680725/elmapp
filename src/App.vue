@@ -3,7 +3,7 @@
     <v_header :seller="seller"></v_header>
     <div class="tab">
       <div class="tab_item">
-        <router-link to="/goods">商品</router-link>
+        <router-link to="/">商品</router-link>
       </div>
       <div class="tab_item">
         <router-link to="/comment">评论</router-link>
@@ -12,7 +12,7 @@
         <router-link to="/sell">商家</router-link>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
 
   </div>
 </template>
@@ -44,15 +44,16 @@
   }
 </script>
 
-<style>
-  .tab {
+<style lang="stylus" rel="stylesheet/stylus">
+  .tab
     display: flex;
     height: 40px;
     line-height: 40px;
-  }
+    .tab_item
+      flex: 1;
+      text-align: center;
+      .router-link-exact-active
+        color: red;
 
-  .tab .tab_item {
-    flex: 1;
-    text-align: center;
-  }
+
 </style>

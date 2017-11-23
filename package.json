@@ -1,7 +1,7 @@
 {
   "name": "elmapp",
   "version": "1.0.0",
-  "description": "elmapp demo",
+  "description": "饿了么",
   "author": "markjson",
   "private": true,
   "scripts": {
@@ -15,7 +15,8 @@
     "vue-router": "^3.0.1",
     "vue-resource":"^1.3.4",
     "stylus-loader": "^3.0.1",
-    "stylus":"^0.54.5"
+    "stylus":"^0.54.5",
+    "better-scroll":"^1.4.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
