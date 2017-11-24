@@ -29,7 +29,7 @@
                   <span class="old" v-show="food.oldPrice">原价¥{{food.oldPrice}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <cartcontrol :food="food"></cartcontrol>
+                  <cartcontrol v-on:addcarts="getAddCartEl" :food="food"></cartcontrol>
                 </div>
               </div>
             </li>
@@ -37,7 +37,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :selectFoods="selectFoods" :delivert-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart ref="shopcart" :select-foods="selectFoods" :delivert-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -58,7 +58,6 @@
         goods: [],
         listHeight: [],
         scrollY: 0,
-        selectFoods:[]
       }
     },
     created() {
@@ -86,6 +85,17 @@
           }
         }
         return 0;
+      },
+      selectFoods(){
+        let foods=[];
+        this.goods.forEach((good)=>{
+          good.foods.forEach((food)=>{
+            if (food.count){
+              foods.push(food);
+            }
+          });
+        });
+        return foods;
       }
     },
     methods: {
@@ -99,7 +109,8 @@
           click: true
         })
         this.foodsSroll = new BScroll(document.querySelector(".foods-wrapper"), {
-          probeType: 3
+          probeType: 3,
+          click: true
         });
         this.foodsSroll.on('scroll', (pos) => {
           this.scrollY = Math.abs(Math.round(pos.y));
@@ -115,12 +126,20 @@
           height += item.clientHeight;
           this.listHeight.push(height)
         }
+      },
+      _drop(traget){
+        this.$refs.shopcart.drop(traget);
+      },
+      //获取点击加入购物车el（从子组件中传来）
+      getAddCartEl(target){
+        this._drop(target);
       }
     },
     components: {
       shopcart,
       cartcontrol
-    }
+    },
+
   }
 </script>
 

@@ -18,6 +18,13 @@
           {{payDesc}}
         </div>
       </div>
+      <div class="ball-container">
+        <div v-for="ball in balls" class="ball">
+            <transition name="drop" v-on:before-enter="beforeEnter" v-on:enter="enter"  v-on:after-enter="afterEnter">
+              <div class="inner inner-hook" v-show="ball.show"></div>
+            </transition>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -40,6 +47,28 @@
         default:0
       },
 
+    },
+    data(){
+      return{
+        balls:[
+          {
+            show:false
+          },
+          {
+            show:false
+          },
+          {
+            show:false
+          },
+          {
+            show:false
+          },
+          {
+            show:false
+          }
+        ],
+        dropBalls:[]
+      };
     },
     computed:{
       totalPrice(){
@@ -66,7 +95,56 @@
           return `去结算`;
         }
       }
-    }
+    },
+    methods:{
+      drop(el){
+        for(let i=0;i<this.balls.length;i++){
+          let ball=this.balls[i];
+          if (!ball.show){
+            ball.show=true;
+            ball.el=el;
+            this.dropBalls.push(ball);
+            return;
+          }
+        }
+      },
+      beforeEnter(el){
+           console.log(el);
+        let count =this.balls.length;
+        while (count--){
+          let ball=this.balls[count];
+          if (ball.show){
+            let rect=ball.el.getBoundingClientRect();
+            let x=rect.left-24;
+            let y=-(window.innerHeight-rect.top-40);
+            el.style.display='';
+            el.style.webkitTransform=`translate3d(${x}px,${y}px,0)`;
+            el.style.transform=`translate3d(${x}px,${y}px,0)`;
+
+          }
+        }
+      },
+      enter(el, done) {
+        console.log(1111)
+        /*eslint-disable no-unused-vars*/
+       let rf= el.offsetHeight;
+       this.$nextTick(()=>{
+         el.style.webkitTransform='translate3d(0,0,0)';
+         el.style.transform=='translate3d(0,0,0)';
+         el.style.opacity=0
+       })
+//        done();
+      },
+      afterEnter(el) {
+        console.log(222)
+        let ball=this.dropBalls.shift();
+        if (ball){
+          ball.show=false;
+          el.style.display='none';
+        }
+      },
+    },
+
   };
 </script>
 
@@ -155,5 +233,19 @@
           &.to-pay
             background :seagreen
             color :#fff
+
+      .ball-container
+        .ball
+          position :fixed
+          left: 32px
+          bottom :22px
+          z-index :200
+          .inner
+            width :16px
+            height :16px
+            border-radius :50%
+            background :rgb(0,160,220)
+            transition:all 3s
+
 
 </style>

@@ -1,9 +1,12 @@
 <template>
   <div class="cart-control">
-    <div class="cart-decreace icon-remove_circle_outline" v-show="food.count>0"
-         @click="decreaceCart" transition="move"></div>
+    <div class="cart-decreace"  @click="decreaceCart" >
+      <transition name="move">
+        <span class="inner icon-remove_circle_outline" v-show="food.count>0"></span>
+      </transition>
+    </div>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
-    <div class="cart-add icon-add_circle" @click="addcart"></div>
+    <div class="cart-add icon-add_circle" @click="addcart($event)"></div>
   </div>
 </template>
 
@@ -16,17 +19,16 @@
       }
     },
     created(){
-//      console.log(this.food)
     },
     methods:{
-      addcart(){
-          console.log(111)
+      addcart(event){
         if (!this.food.count)
         {
           Vue.set(this.food,'count',1)
         }else{
           this.food.count++;
         }
+        this.$emit('addcarts',event.target);
       },
       decreaceCart(){
         if (this.food.count>=1)
@@ -42,12 +44,20 @@
 <style lang="stylus" rel="stylesheet/stylus">
   .cart-control
     font-size 0
-    .cart-decreace,.cart-add
+    .cart-decreace
       display :inline-block
-      font-size :24px
       padding :3px
-      line-height :24px
-      color :rgb(0,160,220)
+      .move-enter-active, .move-leave-active
+        transition :all 0.4s linear
+       .inner
+         display :inline-block
+         font-size :24px
+         line-height :24px
+         color :rgb(0,160,220)
+         transform :rotate(180deg)
+      .move-enter, .move-leave-to
+        opacity :0
+        transform :translate3D(24px,0,0)
     .cart-count
       display :inline-block
       font-size :10px;
@@ -59,6 +69,10 @@
       color :rgb(147,153,159)
     .cart-add
       display :inline-block
+      font-size :24px
+      padding :3px
+      line-height :24px
+      color :rgb(0,160,220)
 
 
 

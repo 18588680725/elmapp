@@ -33,7 +33,6 @@
         response = response.body;
         if (response.errno == RESULT_OK) {
           this.seller = response.data
-          console.log(this.seller)
         }
       }, response => {
       });
