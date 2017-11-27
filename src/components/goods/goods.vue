@@ -133,6 +133,7 @@
       //获取点击加入购物车el（从子组件中传来）
       getAddCartEl(target){
         this._drop(target);
+        console.log(90909)
       }
     },
     components: {
