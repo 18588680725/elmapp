@@ -15,6 +15,7 @@ var appData = require('../data.json')
 var seller = appData.seller
 var goods = appData.goods
 var ratings = appData.ratings
+var quesition=appData.quesition
 var apiRoutes = express.Router()
 app.use('/api', apiRoutes)
 
@@ -62,6 +63,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
             // 这里是你的json内容
             errno: 0,
             data: ratings
+          })
+        }),
+        app.get('/api/quesition',(req,res)=>{
+          res.json({
+            data:quesition
           })
         })
     }

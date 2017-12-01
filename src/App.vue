@@ -6,10 +6,13 @@
         <router-link to="/">商品</router-link>
       </div>
       <div class="tab_item">
-        <router-link to="/comment">评论</router-link>
+        <router-link to="/ratings">评论</router-link>
       </div>
       <div class="tab_item">
         <router-link to="/sell">商家</router-link>
+      </div>
+      <div class="tab_item">
+        <router-link to="/zytzbs">中医</router-link>
       </div>
     </div>
     <router-view :seller="seller"></router-view>
@@ -48,6 +51,7 @@
     display: flex;
     height: 40px;
     line-height: 40px;
+    border-bottom :1px solid rgba(7,17,27,0.1)
     .tab_item
       flex: 1;
       text-align: center;
