@@ -108,10 +108,12 @@
         this.meunSroll = new BScroll(document.querySelector(".menu-wrapper"), {
           click: true
         })
+
         this.foodsSroll = new BScroll(document.querySelector(".foods-wrapper"), {
           probeType: 3,
           click: true
         });
+        console.log(this.foodsSroll)
         this.foodsSroll.on('scroll', (pos) => {
           this.scrollY = Math.abs(Math.round(pos.y));
         })
@@ -189,7 +191,8 @@
           &.guarantee
             bg-image('guarantee_3')
           &.invoice
-            bg-image('invoice_3')
+            bg-image(
+'invoice_3')
           &.special
             bg-image('special_3')
         .text

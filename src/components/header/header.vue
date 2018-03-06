@@ -2,7 +2,7 @@
   <div class="header">
     <div class="top_content">
       <div class="avatar">
-        <img :src="seller.avatar"/>
+        <img :src="seller.avatar" @click="goZhongYI"/>
       </div>
       <div class="content">
         <div class="title">
@@ -85,6 +85,11 @@
       },
       hiddeDetail(){
         this.detailShow=false;
+      },
+      goZhongYI(){
+          this.$router.push({
+            path:"/zytzbs"
+          })
       }
     },
     created(){

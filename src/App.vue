@@ -11,9 +11,9 @@
       <div class="tab_item">
         <router-link to="/sell">商家</router-link>
       </div>
-      <div class="tab_item">
-        <router-link to="/zytzbs">中医</router-link>
-      </div>
+      <!--<div class="tab_item">-->
+        <!--<router-link to="/zytzbs">中医</router-link>-->
+      <!--</div>-->
     </div>
     <router-view :seller="seller"></router-view>
 
